@@ -1,0 +1,9 @@
+/home/ismson/ED/MonoDevelop/CMenu/CMenu/CMenu/bin/Debug/netstandard2.0/CMenu.deps.json
+/home/ismson/ED/MonoDevelop/CMenu/CMenu/CMenu/bin/Debug/netstandard2.0/CMenu.dll
+/home/ismson/ED/MonoDevelop/CMenu/CMenu/CMenu/bin/Debug/netstandard2.0/CMenu.pdb
+/home/ismson/ED/MonoDevelop/CMenu/CMenu/CMenu/obj/Debug/netstandard2.0/CMenu.csprojAssemblyReference.cache
+/home/ismson/ED/MonoDevelop/CMenu/CMenu/CMenu/obj/Debug/netstandard2.0/CMenu.csproj.CoreCompileInputs.cache
+/home/ismson/ED/MonoDevelop/CMenu/CMenu/CMenu/obj/Debug/netstandard2.0/CMenu.AssemblyInfoInputs.cache
+/home/ismson/ED/MonoDevelop/CMenu/CMenu/CMenu/obj/Debug/netstandard2.0/CMenu.AssemblyInfo.cs
+/home/ismson/ED/MonoDevelop/CMenu/CMenu/CMenu/obj/Debug/netstandard2.0/CMenu.dll
+/home/ismson/ED/MonoDevelop/CMenu/CMenu/CMenu/obj/Debug/netstandard2.0/CMenu.pdb
