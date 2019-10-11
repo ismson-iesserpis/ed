@@ -3,3 +3,6 @@ Abrimos conexión a la base de datos SQL desde MonoDevelop utilizando MySQL y po
 
 - 07/10/19
 Creación de la librería CMenu para generar menús automáticamente 
+
+- 11/10/19
+Finalizado el menú SQL (CMenuSQL) y la librería del menu (CMenu)

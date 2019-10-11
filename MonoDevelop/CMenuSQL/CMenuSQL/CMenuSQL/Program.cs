@@ -128,11 +128,62 @@ namespace CMenuSQL
             {
                 Console.WriteLine("No existe ninguna fila con ID: " + id);
                 Console.Read();
-                ShowMainMenu();
                 return;
             }
 
+            Console.Write("Introduce el nuevo nombre del producto: ");
+            string nombre = Console.ReadLine();
+            if (nombre == "")
+            {
+                nombre = dataReader["nombre"].ToString();
+            }
 
+            int id_cat;
+            string id_catStr;
+            do
+            {
+                Console.Write("Introduce la nueva ID de la categoría: ");
+                id_catStr = Console.ReadLine();
+                if (id_catStr == "")
+                {
+                    int.TryParse(dataReader["id_categoria"].ToString(), out id_cat);
+                    break;
+                }
+            } while (!int.TryParse(id_catStr, out id_cat));
+
+            int precio;
+            string precioStr;
+            do
+            {
+                Console.Write("Introduce el nuevo precio del producto: ");
+                precioStr = Console.ReadLine();
+                if (precioStr == "")
+                {
+                    int.TryParse(dataReader["precio"].ToString(), out precio);
+                    break;
+                }
+            } while (!int.TryParse(precioStr, out precio));
+
+            dataReader.Close();
+
+            IDbCommand insertCommand = conn.CreateCommand();
+            insertCommand.CommandText = "UPDATE productos SET nombre = @nombre, id_categoria = @id_cat, precio = @precio WHERE id_prod = @id";
+            insertCommand.Parameters.Add(new MySqlParameter("nombre", nombre));
+            insertCommand.Parameters.Add(new MySqlParameter("id_cat", id_cat));
+            insertCommand.Parameters.Add(new MySqlParameter("precio", precio));
+            insertCommand.Parameters.Add(new MySqlParameter("id", id));
+
+            int affectedRows = insertCommand.ExecuteNonQuery();
+            if (affectedRows == 0)
+            {
+                Console.WriteLine("Se ha ejecutado la orden pero no se ha editado ningún valor");
+            }
+            else
+            {
+                Console.WriteLine("Valores editados");
+            }
+
+            Console.Read();
         }
 
         public static void BorrarDatos()

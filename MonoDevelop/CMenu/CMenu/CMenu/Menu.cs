@@ -34,7 +34,7 @@ namespace CMenu
 
             while (opt < 0 || opt >= options)
             {
-                Console.Write("Select an option: ");
+                Console.Write("Selecciona una opción: ");
 
                 if (!int.TryParse(Console.ReadLine(), out opt))
                     opt = -1;
