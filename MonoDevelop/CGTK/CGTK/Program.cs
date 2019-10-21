@@ -8,7 +8,7 @@ namespace CGTK
         public static void Main(string[] args)
         {
             Application.Init();
-            MainWindow win = new MainWindow();
+            LoginWindow win = new LoginWindow();
             win.Show();
             Application.Run();
         }

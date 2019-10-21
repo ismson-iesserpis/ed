@@ -6,3 +6,6 @@ Creación de la librería CMenu para generar menús automáticamente
 
 - 11/10/19
 Finalizado el menú SQL (CMenuSQL) y la librería del menu (CMenu)
+
+- 14/10/19
+Proyecto CGTK, elegir tabla dinámicamente de las existentes según usuario

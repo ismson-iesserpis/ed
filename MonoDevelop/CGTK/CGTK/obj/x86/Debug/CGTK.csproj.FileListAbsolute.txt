@@ -1,0 +1,10 @@
+/home/ismson/ED/MonoDevelop/CGTK/CGTK/bin/Debug/CGTK.exe
+/home/ismson/ED/MonoDevelop/CGTK/CGTK/bin/Debug/CGTK.pdb
+/home/ismson/ED/MonoDevelop/CGTK/CGTK/bin/Debug/MySql.Data.dll
+/home/ismson/ED/MonoDevelop/CGTK/CGTK/bin/Debug/Renci.SshNet.dll
+/home/ismson/ED/MonoDevelop/CGTK/CGTK/bin/Debug/Renci.SshNet.xml
+/home/ismson/ED/MonoDevelop/CGTK/CGTK/obj/x86/Debug/CGTK.csproj.CoreCompileInputs.cache
+/home/ismson/ED/MonoDevelop/CGTK/CGTK/obj/x86/Debug/CGTK.csproj.CopyComplete
+/home/ismson/ED/MonoDevelop/CGTK/CGTK/obj/x86/Debug/CGTK.exe
+/home/ismson/ED/MonoDevelop/CGTK/CGTK/obj/x86/Debug/CGTK.pdb
+/home/ismson/ED/MonoDevelop/CGTK/CGTK/obj/x86/Debug/CGTK.csprojAssemblyReference.cache
