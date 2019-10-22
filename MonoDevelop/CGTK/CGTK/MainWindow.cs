@@ -23,7 +23,7 @@ public partial class MainWindow : Gtk.Window
         selectingTable = true;
     }
 
-    protected void OnDeleteEvent(object sender, DeleteEventArgs a)
+    private void OnDeleteEvent(object sender, DeleteEventArgs a)
     {
         sqlConn.Close();
 
@@ -31,8 +31,10 @@ public partial class MainWindow : Gtk.Window
         a.RetVal = true;
     }
 
-    protected void OnBtnLoadTableClicked(object sender, EventArgs e)
+    private void OnBtnLoadTableClicked(object sender, EventArgs e)
     {
+        selectingTable = true;
+
         IDbCommand command = sqlConn.CreateCommand();
         command.CommandText = "SHOW TABLES;";
 
@@ -42,8 +44,6 @@ public partial class MainWindow : Gtk.Window
         AppendData(dataReader);
 
         dataReader.Close();
-
-        selectingTable = true;
     }
 
     private void LoadTableData()
@@ -80,8 +80,32 @@ public partial class MainWindow : Gtk.Window
 
         for (int i = 0; i < dReader.FieldCount; ++i)
         {
-            // Grab each column from fields and append it
-            dataViewer.AppendColumn(dReader.GetName(i), new CellRendererText(), "text", i);
+            // Create new column
+            TreeViewColumn col = new TreeViewColumn();
+            col.Title = dReader.GetName(i);
+
+            // Create new CellRenderertext
+            CellRendererText cellRendererText = new CellRendererText();
+            col.PackStart(cellRendererText, true);
+
+            // Add the column to the dataViewer
+            dataViewer.AppendColumn(col);
+
+            // Set the attribute of the cell renderer
+            col.AddAttribute(cellRendererText, "text", i);
+
+            // If selecting table, false; else true
+            if (selectingTable)
+            {
+                cellRendererText.Editable = false;
+            }
+            else
+            {
+                cellRendererText.Editable = true;
+                cellRendererText.Data["column"] = i; // Helper for edited function
+            }
+
+            cellRendererText.Edited += OnCellEdited;
 
             // Grab each type from fields and save inside 'types'
             types[i] = dReader.GetFieldType(i);
@@ -96,14 +120,22 @@ public partial class MainWindow : Gtk.Window
     {
         while (dReader.Read())
         {
-            data.AppendValues(dReader[0].ToString());
+            object[] arr = new object[dReader.FieldCount];
+
+            for (int i = 0; i < dReader.FieldCount; ++i)
+            {
+                arr[i] = dReader[i];
+            }
+
+            data.AppendValues(arr);
         }
     }
 
-    protected void OnDataViewerRowActivated(object o, RowActivatedArgs args)
+    private void OnDataViewerRowActivated(object o, RowActivatedArgs args)
     {
         data.GetIter(out TreeIter iter, args.Path);
 
+        // User is selecting a new table
         if (selectingTable)
         {
             string s = (string)data.GetValue(iter, 0);
@@ -113,5 +145,28 @@ public partial class MainWindow : Gtk.Window
             LoadTableData();
             return;
         }
+    }
+
+    private void OnBtnReloadClicked(object sender, EventArgs e)
+    {
+        IDbCommand command = sqlConn.CreateCommand();
+        command.CommandText = "SELECT * FROM " + curTable;
+
+        IDataReader dReader = command.ExecuteReader();
+
+        SetupDataViewer(dReader);
+        AppendData(dReader);
+
+        dReader.Close();
+    }
+
+    protected void OnCellEdited(object o, EditedArgs args)
+    {
+        data.GetIter(out TreeIter iter, new TreePath(args.Path));
+
+        CellRendererText cellRenderer = (CellRendererText)o;
+        int col = (int) cellRenderer.Data["column"];
+
+        data.SetValue(iter, col, args.NewText);
     }
 }

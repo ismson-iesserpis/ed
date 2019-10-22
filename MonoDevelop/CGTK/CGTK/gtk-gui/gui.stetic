@@ -36,12 +36,13 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="button36">
+              <widget class="Gtk.Button" id="btnReload">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">GtkButton</property>
+                <property name="Label" translatable="yes">Recargar</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnReloadClicked" />
               </widget>
               <packing>
                 <property name="Position">1</property>

@@ -9,7 +9,7 @@ public partial class MainWindow
 
 	private global::Gtk.Button btnLoadTable;
 
-	private global::Gtk.Button button36;
+	private global::Gtk.Button btnReload;
 
 	private global::Gtk.Button button37;
 
@@ -46,13 +46,13 @@ public partial class MainWindow
 		w1.Expand = false;
 		w1.Fill = false;
 		// Container child topMenuBox.Gtk.ButtonBox+ButtonBoxChild
-		this.button36 = new global::Gtk.Button();
-		this.button36.CanFocus = true;
-		this.button36.Name = "button36";
-		this.button36.UseUnderline = true;
-		this.button36.Label = global::Mono.Unix.Catalog.GetString("GtkButton");
-		this.topMenuBox.Add(this.button36);
-		global::Gtk.ButtonBox.ButtonBoxChild w2 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.topMenuBox[this.button36]));
+		this.btnReload = new global::Gtk.Button();
+		this.btnReload.CanFocus = true;
+		this.btnReload.Name = "btnReload";
+		this.btnReload.UseUnderline = true;
+		this.btnReload.Label = global::Mono.Unix.Catalog.GetString("Recargar");
+		this.topMenuBox.Add(this.btnReload);
+		global::Gtk.ButtonBox.ButtonBoxChild w2 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.topMenuBox[this.btnReload]));
 		w2.Position = 1;
 		w2.Expand = false;
 		w2.Fill = false;
@@ -105,6 +105,7 @@ public partial class MainWindow
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 		this.btnLoadTable.Clicked += new global::System.EventHandler(this.OnBtnLoadTableClicked);
+		this.btnReload.Clicked += new global::System.EventHandler(this.OnBtnReloadClicked);
 		this.dataViewer.RowActivated += new global::Gtk.RowActivatedHandler(this.OnDataViewerRowActivated);
 	}
 }
