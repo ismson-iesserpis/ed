@@ -105,5 +105,6 @@ public partial class MainWindow
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 		this.btnLoadTable.Clicked += new global::System.EventHandler(this.OnBtnLoadTableClicked);
+		this.dataViewer.RowActivated += new global::Gtk.RowActivatedHandler(this.OnDataViewerRowActivated);
 	}
 }

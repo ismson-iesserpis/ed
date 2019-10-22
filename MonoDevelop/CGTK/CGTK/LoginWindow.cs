@@ -48,6 +48,8 @@ namespace CGTK
                                                         ex.Message);
                 dialog.Run();
                 dialog.Destroy();
+
+                loginPassword.Text = "";
                 return;
             }
 

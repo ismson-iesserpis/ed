@@ -9,3 +9,6 @@ Finalizado el menú SQL (CMenuSQL) y la librería del menu (CMenu)
 
 - 14/10/19
 Proyecto CGTK, elegir tabla dinámicamente de las existentes según usuario
+
+- 21/10/19
+Actualizar TreeView dependiendo de la tabla que carguemos, y los tipos de datos

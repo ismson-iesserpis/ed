@@ -1,14 +1,14 @@
 ﻿<Properties StartupConfiguration="{7560E27D-5B7E-47CA-AB98-E857318D6B67}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="CGTK/MainWindow.cs">
     <Files>
-      <File FileName="CGTK/MainWindow.cs" Line="35" Column="13" />
+      <File FileName="CGTK/MainWindow.cs" Line="92" Column="33" />
+      <File FileName="CGTK/LoginWindow.cs" Line="46" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CGTK" expanded="True">
             <Node name="CGTK" expanded="True">
-              <Node name="UserInterface" expanded="True" />
               <Node name="MainWindow.cs" selected="True" />
             </Node>
           </Node>
