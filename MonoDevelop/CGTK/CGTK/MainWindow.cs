@@ -33,18 +33,23 @@ public partial class MainWindow : Gtk.Window
 
     private void OnDeleteEvent(object sender, DeleteEventArgs a)
     {
+        if (!WantsDiscardChanges())
+        {
+            a.RetVal = true;   
+            return;
+        }
+
         sqlConn.Close();
 
         Application.Quit();
-        a.RetVal = true;
+        a.RetVal = false;
     }
 
     private void OnBtnLoadTableClicked(object sender, EventArgs e)
     {
-        // TODO: Add a dialog saying changes will be discarded
-        if (RequiresSave())
+        if (!WantsDiscardChanges())
         {
-            
+            return;
         }
 
         selectingTable = true;
@@ -187,8 +192,13 @@ public partial class MainWindow : Gtk.Window
         try
         {
             object helper = data.GetValue(iter, col);
-            object newValue = Convert.ChangeType(args.NewText, helper.GetType());
 
+            if (helper.ToString() == args.NewText)
+            {
+                return;
+            }
+
+            object newValue = Convert.ChangeType(args.NewText, helper.GetType());
             data.SetValue(iter, col, newValue);
 
             AddToSave(new Tuple<TreeIter, int>(iter, col));
@@ -231,10 +241,33 @@ public partial class MainWindow : Gtk.Window
         btnSave.Sensitive = false;
     }
 
+    private bool WantsDiscardChanges()
+    {
+        if (!RequiresSave())
+        {
+            return true;
+        }
+
+        MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                                                MessageType.Question, ButtonsType.YesNo,
+                                                "Hay cambios no guardados. ¿Salir?");
+        ResponseType response = (ResponseType) dialog.Run();
+        dialog.Destroy();
+
+        if (response == ResponseType.Yes)
+        {
+            RemoveAllSaveList();
+            return true;
+        }
+
+        return false;
+    }
+
     private void OnBtnSaveClicked(object sender, EventArgs e)
     {
         if (!RequiresSave())
         {
+            btnSave.Sensitive = false;
             return;
         }
 

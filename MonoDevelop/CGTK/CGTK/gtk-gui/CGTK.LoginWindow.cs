@@ -71,6 +71,7 @@ namespace CGTK
 			this.DefaultHeight = 349;
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+			this.loginForm.KeyPressEvent += new global::Gtk.KeyPressEventHandler(this.OnLoginFormKeyPressEvent);
 			this.btnLogin.Clicked += new global::System.EventHandler(this.OnBtnLoginClicked);
 		}
 	}
