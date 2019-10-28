@@ -14,6 +14,7 @@ public partial class MainWindow : Gtk.Window
     private int needsSave;
 
     private bool selectingTable;
+    private TreeSelection curSelected;
 
     public MainWindow(IDbConnection conn) : base(Gtk.WindowType.Toplevel)
     {
@@ -29,6 +30,9 @@ public partial class MainWindow : Gtk.Window
         saveRequired = new Tuple<TreeIter, int>[100];
         needsSave = 0;
         RemoveAllSaveList();
+
+        dataViewer.Selection.Changed += OnSelectionChanged;
+        btnDelete.Sensitive = false;
     }
 
     private void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -134,6 +138,10 @@ public partial class MainWindow : Gtk.Window
         // Setup the TreeStore
         data = new TreeStore(types);
         dataViewer.Model = data;
+
+        // Buttons
+        btnSave.Sensitive = false;
+        btnDelete.Sensitive = false;
     }
 
     private void AppendData(IDataReader dReader)
@@ -171,6 +179,11 @@ public partial class MainWindow : Gtk.Window
 
     private void OnBtnReloadClicked(object sender, EventArgs e)
     {
+        if (selectingTable)
+        {
+            return;
+        }
+
         IDbCommand command = sqlConn.CreateCommand();
         command.CommandText = "SELECT * FROM " + curTable;
 
@@ -337,5 +350,41 @@ public partial class MainWindow : Gtk.Window
                 dialog1.Destroy();
             }
         }
+    }
+
+    private void OnSelectionChanged(object o, System.EventArgs args)
+    {
+        if (selectingTable)
+        {
+            return;
+        }
+
+        curSelected = (TreeSelection)o;
+
+        if (curSelected == null)
+        {
+            btnDelete.Sensitive = false;
+            return;
+        }
+
+        btnDelete.Sensitive = true;
+    }
+
+    private void OnBtnDeleteClicked(object sender, EventArgs e)
+    {
+        if (!curSelected.GetSelected(out TreeIter iter))
+        {
+            btnDelete.Sensitive = false;
+            return;
+        }
+
+        string idStr = data.GetValue(iter, 0).ToString();
+
+        IDbCommand command = sqlConn.CreateCommand();
+        command.CommandText = "DELETE FROM " + curTable + " WHERE " + dataViewer.GetColumn(0).Title + " = " + idStr;
+
+        command.ExecuteNonQuery();
+
+        btnReload.Click();
     }
 }

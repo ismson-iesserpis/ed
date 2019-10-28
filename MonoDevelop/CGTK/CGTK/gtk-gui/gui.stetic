@@ -66,12 +66,13 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="button38">
+              <widget class="Gtk.Button" id="btnDelete">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">GtkButton</property>
+                <property name="Label" translatable="yes">Eliminar</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnDeleteClicked" />
               </widget>
               <packing>
                 <property name="Position">3</property>
