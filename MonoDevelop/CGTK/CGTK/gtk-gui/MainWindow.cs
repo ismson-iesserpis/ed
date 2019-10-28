@@ -11,7 +11,7 @@ public partial class MainWindow
 
 	private global::Gtk.Button btnReload;
 
-	private global::Gtk.Button button37;
+	private global::Gtk.Button btnSave;
 
 	private global::Gtk.Button button38;
 
@@ -57,13 +57,13 @@ public partial class MainWindow
 		w2.Expand = false;
 		w2.Fill = false;
 		// Container child topMenuBox.Gtk.ButtonBox+ButtonBoxChild
-		this.button37 = new global::Gtk.Button();
-		this.button37.CanFocus = true;
-		this.button37.Name = "button37";
-		this.button37.UseUnderline = true;
-		this.button37.Label = global::Mono.Unix.Catalog.GetString("GtkButton");
-		this.topMenuBox.Add(this.button37);
-		global::Gtk.ButtonBox.ButtonBoxChild w3 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.topMenuBox[this.button37]));
+		this.btnSave = new global::Gtk.Button();
+		this.btnSave.CanFocus = true;
+		this.btnSave.Name = "btnSave";
+		this.btnSave.UseUnderline = true;
+		this.btnSave.Label = global::Mono.Unix.Catalog.GetString("Guardar");
+		this.topMenuBox.Add(this.btnSave);
+		global::Gtk.ButtonBox.ButtonBoxChild w3 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.topMenuBox[this.btnSave]));
 		w3.Position = 2;
 		w3.Expand = false;
 		w3.Fill = false;
@@ -106,6 +106,7 @@ public partial class MainWindow
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 		this.btnLoadTable.Clicked += new global::System.EventHandler(this.OnBtnLoadTableClicked);
 		this.btnReload.Clicked += new global::System.EventHandler(this.OnBtnReloadClicked);
+		this.btnSave.Clicked += new global::System.EventHandler(this.OnBtnSaveClicked);
 		this.dataViewer.RowActivated += new global::Gtk.RowActivatedHandler(this.OnDataViewerRowActivated);
 	}
 }

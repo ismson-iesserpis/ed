@@ -51,12 +51,13 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="button37">
+              <widget class="Gtk.Button" id="btnSave">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">GtkButton</property>
+                <property name="Label" translatable="yes">Guardar</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnSaveClicked" />
               </widget>
               <packing>
                 <property name="Position">2</property>
